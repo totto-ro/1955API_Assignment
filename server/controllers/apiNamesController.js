@@ -54,9 +54,30 @@ const ApiNamesController = {
                 response.statusMessage = error.message;
                 response.status( 404 ).end();
             })
+    },
 
+    retrieveName : function( request, response ){
+        let name = request.params.name;
+
+        ApiNameModel
+        .getApiNameById( name )
+                .then( user => {
+                    if( user === null ){
+                        throw new Error( "That name doesn't exist" );
+                    }
+                    else{
+                        ApiNameModel
+                            .getApiNameById( name )
+                            .then( result => {
+                                response.status( 200 ).json( result );
+                            });
+                    }
+                })
+                .catch( error => {
+                    response.statusMessage = error.message;
+                    response.status( 404 ).end();
+                })
     }
-
 }
 
 module.exports = {ApiNamesController};

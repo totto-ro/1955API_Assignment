@@ -11,9 +11,9 @@ ApiNameRouter
 
 ApiNameRouter
     .get( '/remove/:name', ApiNamesController.deleteName );
-/*
+
 ApiNameRouter
     .get( '/:name', ApiNamesController.retrieveName );
-*/
+
 
 module.exports = { ApiNameRouter };
